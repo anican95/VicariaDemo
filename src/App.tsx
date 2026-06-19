@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { createElement, useMemo, useState } from "react";
 
 type Item = {
   id: string;
@@ -86,23 +86,23 @@ export default function App() {
         </div>
 
         <div className="viewer-frame">
-          <model-viewer
-            key={selected.id}
-            className="model-viewer"
-            src={selected.model}
-            ios-src={selected.iosModel}
-            poster={selected.image}
-            alt={`Modelo AR de ${selected.label}`}
-            ar
-            ar-modes="webxr scene-viewer quick-look"
-            camera-controls
-            auto-rotate
-            rotation-per-second="20deg"
-            shadow-intensity="1"
-            loading="eager"
-            reveal="interaction"
-            interaction-prompt="auto"
-          />
+          {createElement("model-viewer", {
+            key: selected.id,
+            className: "model-viewer",
+            src: selected.model,
+            "ios-src": selected.iosModel,
+            poster: selected.image,
+            alt: `Modelo AR de ${selected.label}`,
+            ar: true,
+            "ar-modes": "webxr scene-viewer quick-look",
+            "camera-controls": true,
+            "auto-rotate": true,
+            "rotation-per-second": "20deg",
+            "shadow-intensity": 1,
+            loading: "eager",
+            reveal: "interaction",
+            "interaction-prompt": "auto",
+          })}
         </div>
 
         <p className="note">

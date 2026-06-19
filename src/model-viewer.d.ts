@@ -11,6 +11,7 @@ declare global {
         "ar-modes"?: string;
         "camera-controls"?: boolean;
         "auto-rotate"?: boolean;
+        "rotation-per-second"?: string;
         "shadow-intensity"?: string | number;
         loading?: "eager" | "lazy";
         reveal?: "auto" | "interaction" | "manual";

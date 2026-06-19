@@ -1,13 +1,14 @@
 :root {
   color-scheme: dark;
   --bg: #07111d;
-  --panel: rgba(10, 17, 30, 0.86);
-  --panel-strong: rgba(14, 23, 40, 0.94);
+  --panel: rgba(10, 17, 30, 0.88);
+  --panel-strong: rgba(14, 23, 40, 0.96);
   --border: rgba(167, 185, 212, 0.16);
   --text: #f4f8ff;
   --muted: #b7c2d7;
   --accent: #7ef9ff;
   --accent-strong: #49d7e4;
+  --success: #2ed894;
   --shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -175,8 +176,8 @@ img {
   min-height: 40px;
   padding: 0 14px;
   border-radius: 999px;
-  background: rgba(61, 220, 151, 0.13);
-  border: 1px solid rgba(61, 220, 151, 0.28);
+  background: rgba(46, 216, 148, 0.13);
+  border: 1px solid rgba(46, 216, 148, 0.28);
   color: #c8f7e1;
   white-space: nowrap;
 }

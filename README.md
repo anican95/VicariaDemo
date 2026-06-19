@@ -49,6 +49,12 @@ npm run build
 https://anican95.github.io/VisionAR_proyect1/
 ```
 
+## Repositorio
+
+- Nombre del repo: `VisionAR_proyect1`
+- Visibilidad: privado
+- Origen remoto: `origin`
+
 ## Recomendación práctica
 
 Antes de publicar, ejecuta `npm run build` para confirmar que los modelos y assets se generan correctamente.
