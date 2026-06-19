@@ -16,7 +16,7 @@ const ITEMS: Item[] = [
     id: "img-1",
     label: "Imagen 1",
     description: "Retrato limpio con contraste alto",
-    image: `${base}RepositorioImagenes/Img_1.png`,
+    image: `${base}RepositorioImagenes/Img_1.jpg`,
     model: `${base}modelos/Img_1.glb`,
     iosModel: `${base}modelos/Img_1.usdz`,
   },

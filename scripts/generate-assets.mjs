@@ -19,6 +19,10 @@ if (imageFiles.length !== 3) {
 
 fs.mkdirSync(publicImageDir, { recursive: true });
 fs.mkdirSync(modelDir, { recursive: true });
+cleanDirectory(publicImageDir);
+cleanDirectory(modelDir);
+fs.mkdirSync(publicImageDir, { recursive: true });
+fs.mkdirSync(modelDir, { recursive: true });
 
 for (const fileName of imageFiles) {
   const sourcePath = path.join(sourceDir, fileName);
@@ -246,6 +250,17 @@ function alignBuffer(buffer) {
     return buffer;
   }
   return Buffer.concat([buffer, Buffer.alloc(padding)]);
+}
+
+function cleanDirectory(directoryPath) {
+  if (!fs.existsSync(directoryPath)) {
+    return;
+  }
+
+  for (const entry of fs.readdirSync(directoryPath, { withFileTypes: true })) {
+    const entryPath = path.join(directoryPath, entry.name);
+    fs.rmSync(entryPath, { recursive: true, force: true });
+  }
 }
 
 function buildGlb(json, binBuffer) {
