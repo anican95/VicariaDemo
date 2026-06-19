@@ -211,10 +211,10 @@ def Xform "Root" {
     def Mesh "Plane" {
         uniform token subdivisionScheme = "none"
         point3f[] points = [(-${halfWidth}, -0.5, 0), (${halfWidth}, -0.5, 0), (${halfWidth}, 0.5, 0), (-${halfWidth}, 0.5, 0)]
-        int[] faceVertexCounts = [4]
-        int[] faceVertexIndices = [0, 1, 2, 3]
+        int[] faceVertexCounts = [3, 3]
+        int[] faceVertexIndices = [0, 1, 2, 0, 2, 3]
         normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)]
-        int[] normals:indices = [0, 1, 2, 3]
+        int[] normals:indices = [0, 1, 2, 0, 2, 3]
         texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)]
         uniform token primvars:st:interpolation = "vertex"
         rel material:binding = </Root/Looks/Material>
