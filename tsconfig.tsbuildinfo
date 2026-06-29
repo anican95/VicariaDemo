@@ -1,1 +1,0 @@
-{"root":["./src/app.tsx","./src/main.tsx","./src/model-viewer.d.ts","./src/vite-env.d.ts","./src/components/camerafallback.tsx","./src/components/webxrexperience.tsx","./src/hooks/usecamerastream.ts","./src/hooks/useimagetransform.ts","./src/lib/filevalidation.ts","./src/lib/support.ts"],"errors":true,"version":"5.9.3"}
