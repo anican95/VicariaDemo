@@ -6,14 +6,13 @@ type ModelViewerElement = HTMLElement & {
 
 const base = import.meta.env.BASE_URL;
 const viewerId = "visionar-model-viewer";
-const assetVersion = "v20260629b";
 
 const image1 = {
   label: "Imagen 1",
   description: "Demo AR funcional para el cliente.",
-  image: `${base}RepositorioImagenes/Img_1.${assetVersion}.jpg`,
-  model: `${base}modelos/Img_1.${assetVersion}.glb`,
-  iosModel: `${base}modelos/Img_1.${assetVersion}.usdz`,
+  image: `${base}RepositorioImagenes/Img_1.jpg`,
+  model: `${base}modelos/Img_1.glb`,
+  iosModel: `${base}modelos/img_1.usdc`,
   url: new URL(`${base}Vicaria/img1/`, window.location.origin).toString(),
 };
 
