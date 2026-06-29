@@ -151,10 +151,10 @@ export default function App() {
     <main className="page">
       <section className="hero">
         <p className="eyebrow">VisionAR</p>
-        <h1>{isHome ? "Tres enlaces, una imagen AR por ruta" : activeItem?.label}</h1>
+        <h1>{isHome ? "URLs listas para compartir" : activeItem?.label}</h1>
         <p className="lead">
           {isHome
-            ? "Cada imagen tiene su propio link para compartir y abrir la experiencia AR directamente."
+            ? "Cada imagen tiene una URL pública completa para copiar y enviar al cliente."
             : "Esta URL abre una sola imagen y su botón de cámara/AR correspondiente."}
         </p>
 
@@ -168,33 +168,51 @@ export default function App() {
         ) : null}
       </section>
 
-      <section className="status-card" aria-live="polite">
-        <div>
-          <p className="eyebrow">Estado</p>
-          <p className="status-card__text">{status}</p>
-        </div>
-        <div className="badge badge--soft">{isHome ? "Rutas listas" : "Ruta activa"}</div>
-      </section>
-
       {isHome ? (
-        <section className="selector" aria-label="Rutas de imágenes">
+        <section className="selector" aria-label="URLs de imágenes">
           {ITEMS.map((item) => (
-            <article key={item.slug} className="route-card">
-              <img src={item.image} alt="" className="route-card__thumb" />
+            <article key={item.slug} className="route-card route-card--url">
               <div className="route-card__body">
                 <div>
                   <p className="route-card__label">{item.label}</p>
-                  <p className="route-card__description">{item.description}</p>
                   <p className="route-card__url">{buildFullUrl(item.slug)}</p>
                 </div>
-                <a className="primary-link" href={buildFullUrl(item.slug)}>
-                  Abrir enlace
-                </a>
+                <div className="route-card__actions">
+                  <button
+                    type="button"
+                    className="primary-button"
+                    onClick={() => window.open(buildFullUrl(item.slug), "_blank", "noopener,noreferrer")}
+                  >
+                    Abrir
+                  </button>
+                  <button
+                    type="button"
+                    className="secondary-button"
+                    onClick={async () => {
+                      try {
+                        await navigator.clipboard.writeText(buildFullUrl(item.slug));
+                        setStatus(`Copiada: ${buildFullUrl(item.slug)}`);
+                      } catch {
+                        setStatus("No se pudo copiar la URL en este navegador.");
+                      }
+                    }}
+                  >
+                    Copiar
+                  </button>
+                </div>
               </div>
             </article>
           ))}
         </section>
-      ) : null}
+      ) : (
+        <section className="status-card" aria-live="polite">
+          <div>
+            <p className="eyebrow">Estado</p>
+            <p className="status-card__text">{status}</p>
+          </div>
+          <div className="badge badge--soft">Ruta activa</div>
+        </section>
+      )}
 
       {!isHome && activeItem ? (
         <section className="viewer-card" aria-label={`Vista AR de ${activeItem.label}`}>

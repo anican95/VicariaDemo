@@ -199,6 +199,10 @@ img {
   box-shadow: var(--shadow);
 }
 
+.route-card--url {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .route-card__thumb {
   width: 112px;
   height: 112px;
@@ -210,6 +214,12 @@ img {
 .route-card__body {
   display: grid;
   gap: 14px;
+}
+
+.route-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .route-card__label {
@@ -318,9 +328,8 @@ img {
     grid-template-columns: 88px minmax(0, 1fr);
   }
 
-  .route-card__thumb {
-    width: 88px;
-    height: 88px;
+  .route-card--url {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .viewer-card__meta {
