@@ -6,7 +6,7 @@ type ModelViewerElement = HTMLElement & {
 
 const base = import.meta.env.BASE_URL;
 const viewerId = "visionar-model-viewer";
-const assetVersion = "v20260629e";
+const assetVersion = "v20260629f";
 
 const image1 = {
   label: "Imagen 1",
