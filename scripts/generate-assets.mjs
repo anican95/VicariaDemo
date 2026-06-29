@@ -79,9 +79,13 @@ function createGlbPlane({ imageBuffer, mimeType, aspect }) {
     -aspect / 2, -0.5, 0,
     aspect / 2, -0.5, 0,
     aspect / 2, 0.5, 0,
+    -aspect / 2, -0.5, 0,
+    aspect / 2, 0.5, 0,
     -aspect / 2, 0.5, 0,
   ]);
   const normals = new Float32Array([
+    0, 0, 1,
+    0, 0, 1,
     0, 0, 1,
     0, 0, 1,
     0, 0, 1,
@@ -91,9 +95,11 @@ function createGlbPlane({ imageBuffer, mimeType, aspect }) {
     0, 0,
     1, 0,
     1, 1,
+    0, 0,
+    1, 1,
     0, 1,
   ]);
-  const indices = new Uint16Array([0, 1, 2, 0, 2, 3]);
+  const indices = new Uint16Array([0, 1, 2, 3, 4, 5]);
 
   const chunks = [
     alignBuffer(Buffer.from(positions.buffer)),
@@ -152,7 +158,7 @@ function createGlbPlane({ imageBuffer, mimeType, aspect }) {
       {
         bufferView: 0,
         componentType: 5126,
-        count: 4,
+        count: 6,
         type: "VEC3",
         min: [-aspect / 2, -0.5, 0],
         max: [aspect / 2, 0.5, 0],
@@ -160,13 +166,13 @@ function createGlbPlane({ imageBuffer, mimeType, aspect }) {
       {
         bufferView: 1,
         componentType: 5126,
-        count: 4,
+        count: 6,
         type: "VEC3",
       },
       {
         bufferView: 2,
         componentType: 5126,
-        count: 4,
+        count: 6,
         type: "VEC2",
       },
       {
@@ -210,13 +216,12 @@ function buildUsda({ textureName, aspect }) {
 def Xform "Root" {
     def Mesh "Plane" {
         uniform token subdivisionScheme = "none"
-        point3f[] points = [(-${halfWidth}, -0.5, 0), (${halfWidth}, -0.5, 0), (${halfWidth}, 0.5, 0), (-${halfWidth}, 0.5, 0)]
+        point3f[] points = [(-${halfWidth}, -0.5, 0), (${halfWidth}, -0.5, 0), (${halfWidth}, 0.5, 0), (-${halfWidth}, -0.5, 0), (${halfWidth}, 0.5, 0), (-${halfWidth}, 0.5, 0)]
         int[] faceVertexCounts = [3, 3]
-        int[] faceVertexIndices = [0, 1, 2, 0, 2, 3]
-        normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)]
-        int[] normals:indices = [0, 1, 2, 0, 2, 3]
-        texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1)]
-        uniform token primvars:st:interpolation = "vertex"
+        int[] faceVertexIndices = [0, 1, 2, 3, 4, 5]
+        texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 0), (1, 1), (0, 1)]
+        uniform token primvars:st:interpolation = "faceVarying"
+        bool doubleSided = true
         rel material:binding = </Root/Looks/Material>
     }
 
