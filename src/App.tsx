@@ -12,7 +12,7 @@ const image1 = {
   description: "Demo AR funcional para el cliente.",
   image: `${base}RepositorioImagenes/Img_1.jpg`,
   model: `${base}modelos/Img_1.glb`,
-  iosModel: `${base}modelos/img_1.usdc`,
+  iosModel: `${base}modelos/Img_1.usdz`,
   url: new URL(`${base}Vicaria/img1/`, window.location.origin).toString(),
 };
 
