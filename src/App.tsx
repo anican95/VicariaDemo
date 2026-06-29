@@ -21,7 +21,7 @@ export default function App() {
   const [launching, setLaunching] = useState(false);
 
   useEffect(() => {
-    document.title = "VisionAR | Imagen 1";
+    document.title = "VicariaDemo | Imagen 1";
   }, []);
 
   const openAR = async () => {
@@ -52,7 +52,7 @@ export default function App() {
   return (
     <main className="page page--single">
       <section className="hero">
-        <p className="eyebrow">VisionAR</p>
+        <p className="eyebrow">VicariaDemo</p>
         <h1>Demo AR de Imagen 1</h1>
         <p className="lead">
           Usa el botón principal para abrir la experiencia AR directamente en el dispositivo.

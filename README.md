@@ -1,6 +1,6 @@
-# VisionAR_proyect1
+# VicariaDemo
 
-Sitio estático de VisionAR con 3 imágenes precargadas y visor AR basado en `<model-viewer>`.
+Demo estática de Vicaria con una experiencia AR funcional para la imagen 1 basada en `<model-viewer>`.
 
 ## Estructura
 
@@ -40,20 +40,27 @@ npm run build
 
 ## Despliegue en GitHub Pages
 
-1. Crea el repositorio `anican95/VisionAR_proyect1`.
+1. Crea el repositorio `anican95/VicariaDemo`.
 2. Sube el contenido de este proyecto al repositorio.
 3. Activa GitHub Pages desde la rama `main` y la carpeta raíz o `dist`.
 4. La URL final esperada es:
 
 ```text
-https://anican95.github.io/VisionAR_proyect1/
+https://anican95.github.io/VicariaDemo/
 ```
 
 ## Repositorio
 
-- Nombre del repo: `VisionAR_proyect1`
-- Visibilidad: privado
+- Nombre del repo: `VicariaDemo`
+- Usuario: `anican95`
+- Visibilidad: privada o pública según tu despliegue
 - Origen remoto: `origin`
+
+## Demostración
+
+- La pantalla principal abre la demo de la imagen 1.
+- El botón `Abrir AR` lanza el visor AR compatible con el dispositivo.
+- La URL de demo queda visible para compartir y copiar.
 
 ## Recomendación práctica
 
