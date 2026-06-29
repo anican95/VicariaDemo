@@ -16,11 +16,6 @@ const image1 = {
   url: new URL(`${base}Vicaria/img1/`, window.location.origin).toString(),
 };
 
-function isImageRoute(pathname: string) {
-  const normalized = pathname.replace(/\/+$/, "");
-  return normalized === `${base.replace(/\/$/, "")}/Vicaria/img1`;
-}
-
 export default function App() {
   const [status, setStatus] = useState("Demo lista para abrir la imagen 1 en AR.");
   const [launching, setLaunching] = useState(false);
@@ -54,26 +49,13 @@ export default function App() {
     }
   };
 
-  const copyUrl = async () => {
-    try {
-      await navigator.clipboard.writeText(image1.url);
-      setStatus(`URL copiada: ${image1.url}`);
-    } catch {
-      setStatus("No se pudo copiar la URL en este navegador.");
-    }
-  };
-
-  const showHome = !isImageRoute(window.location.pathname);
-
   return (
     <main className="page page--single">
       <section className="hero">
         <p className="eyebrow">VisionAR</p>
         <h1>Demo AR de Imagen 1</h1>
         <p className="lead">
-          {showHome
-            ? "Abre la experiencia de la imagen 1 o usa su URL completa para compartir."
-            : "Esta ruta carga directamente la experiencia AR de la imagen 1."}
+          Usa el botón principal para abrir la experiencia AR directamente en el dispositivo.
         </p>
       </section>
 
@@ -117,15 +99,13 @@ export default function App() {
 
         <div className="viewer-actions">
           <button type="button" className="primary-button" onClick={openAR} disabled={launching}>
-            {launching ? "Abriendo cámara..." : "Abrir cámara y ver en AR"}
-          </button>
-          <button type="button" className="secondary-button" onClick={copyUrl}>
-            Copiar URL
+            {launching ? "Abriendo AR..." : "Abrir AR"}
           </button>
         </div>
 
         <p className="note">
-          URL directa del demo: <span className="route-inline">{image1.url}</span>
+          URL directa del demo:
+          <span className="route-inline">{image1.url}</span>
         </p>
       </section>
     </main>
