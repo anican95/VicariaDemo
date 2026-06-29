@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VisionAR</title>
+    <script>
+      (function () {
+        var locationPath = window.location.pathname + window.location.search + window.location.hash;
+        var parts = window.location.pathname.split("/");
+        var base = "/" + (parts[1] || "") + "/";
+        var target = base + "?path=" + encodeURIComponent(locationPath.endsWith("/") ? locationPath : locationPath + "/");
+        window.location.replace(target);
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>
