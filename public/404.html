@@ -6,11 +6,9 @@
     <title>VisionAR</title>
     <script>
       (function () {
-        var locationPath = window.location.pathname + window.location.search + window.location.hash;
         var parts = window.location.pathname.split("/");
         var base = "/" + (parts[1] || "") + "/";
-        var target = base + "?path=" + encodeURIComponent(locationPath.endsWith("/") ? locationPath : locationPath + "/");
-        window.location.replace(target);
+        window.location.replace(base);
       })();
     </script>
   </head>

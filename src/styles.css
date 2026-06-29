@@ -58,6 +58,10 @@ img {
   gap: 18px;
 }
 
+.page--single {
+  width: min(980px, calc(100% - 32px));
+}
+
 .hero,
 .viewer-card {
   border: 1px solid var(--border);
@@ -246,6 +250,13 @@ img {
   margin-top: 16px;
   padding-top: 14px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.route-inline {
+  display: block;
+  margin-top: 6px;
+  color: var(--text);
+  word-break: break-all;
 }
 
 .viewer-card {
