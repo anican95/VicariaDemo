@@ -6,15 +6,32 @@ type ModelViewerElement = HTMLElement & {
 
 const base = import.meta.env.BASE_URL;
 const viewerId = "visionar-model-viewer";
+const assetVersion = "v20260629b";
 
 const image1 = {
   label: "Imagen 1",
   description: "Demo AR funcional para el cliente.",
-  image: `${base}RepositorioImagenes/Img_1.jpg`,
-  model: `${base}modelos/Img_1.glb`,
-  iosModel: `${base}modelos/Img_1.usdz`,
+  image: `${base}RepositorioImagenes/Img_1.${assetVersion}.jpg`,
+  model: `${base}modelos/Img_1.${assetVersion}.glb`,
+  iosModel: `${base}modelos/Img_1.${assetVersion}.usdz`,
   url: new URL(`${base}Vicaria/img1/`, window.location.origin).toString(),
 };
+
+function isIOSDevice() {
+  const ua = navigator.userAgent;
+  return /iPad|iPhone|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+}
+
+function isAndroidDevice() {
+  return /Android/i.test(navigator.userAgent);
+}
+
+function buildSceneViewerIntent(modelUrl: string, fallbackUrl: string) {
+  const model = encodeURIComponent(modelUrl);
+  const title = encodeURIComponent("VicariaDemo - Imagen 1");
+  const fallback = encodeURIComponent(fallbackUrl);
+  return `intent://arvr.google.com/scene-viewer/1.0?file=${model}&mode=ar_preferred&title=${title}&link=${fallback}#Intent;scheme=https;package=com.google.ar.core;action=android.intent.action.VIEW;S.browser_fallback_url=${fallback};end`;
+}
 
 export default function App() {
   const [status, setStatus] = useState("Demo lista para abrir la imagen 1 en AR.");
@@ -37,12 +54,37 @@ export default function App() {
 
     try {
       if (typeof viewer.activateAR === "function") {
-        await viewer.activateAR();
-        setStatus("AR abierto para la imagen 1.");
-      } else {
-        setStatus("Tu navegador no permite abrir AR desde código. Usa el botón AR del visor.");
+        viewer.activateAR();
+        setStatus("Intentando abrir AR para la imagen 1.");
+        return;
       }
+
+      if (isAndroidDevice()) {
+        window.location.assign(buildSceneViewerIntent(image1.model, image1.url));
+        setStatus("Abriendo Scene Viewer en Android.");
+        return;
+      }
+
+      if (isIOSDevice()) {
+        window.location.assign(image1.iosModel);
+        setStatus("Abriendo Quick Look en iPhone.");
+        return;
+      }
+
+      setStatus("Tu navegador no permite abrir AR desde código. Usa el botón AR del visor.");
     } catch {
+      if (isAndroidDevice()) {
+        window.location.assign(buildSceneViewerIntent(image1.model, image1.url));
+        setStatus("Reintentando con Scene Viewer en Android.");
+        return;
+      }
+
+      if (isIOSDevice()) {
+        window.location.assign(image1.iosModel);
+        setStatus("Reintentando con Quick Look en iPhone.");
+        return;
+      }
+
       setStatus("No fue posible abrir AR en este navegador o dispositivo.");
     } finally {
       setLaunching(false);
@@ -86,7 +128,8 @@ export default function App() {
             poster: image1.image,
             alt: "Modelo AR de Imagen 1",
             ar: true,
-            "ar-modes": "webxr scene-viewer quick-look",
+            "ar-modes": "scene-viewer quick-look webxr",
+            "ar-scale": "fixed",
             "camera-controls": true,
             "auto-rotate": true,
             "rotation-per-second": "20deg",

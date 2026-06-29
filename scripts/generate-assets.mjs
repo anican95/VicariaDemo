@@ -7,6 +7,7 @@ const rootDir = process.cwd();
 const sourceDir = path.join(rootDir, "src", "RepositorioImagenes");
 const publicImageDir = path.join(rootDir, "public", "RepositorioImagenes");
 const modelDir = path.join(rootDir, "public", "modelos");
+const assetVersion = "v20260629b";
 
 const imageFiles = fs
   .readdirSync(sourceDir)
@@ -32,10 +33,16 @@ for (const fileName of imageFiles) {
   const stem = path.parse(fileName).name;
   const glbPath = path.join(modelDir, `${stem}.glb`);
   const usdzPath = path.join(modelDir, `${stem}.usdz`);
+  const versionedImagePath = path.join(publicImageDir, `${stem}.${assetVersion}${path.extname(fileName).toLowerCase()}`);
+  const versionedGlbPath = path.join(modelDir, `${stem}.${assetVersion}.glb`);
+  const versionedUsdzPath = path.join(modelDir, `${stem}.${assetVersion}.usdz`);
 
   fs.copyFileSync(sourcePath, path.join(publicImageDir, fileName));
   fs.writeFileSync(glbPath, createGlbPlane({ imageBuffer, mimeType, aspect }));
   fs.writeFileSync(usdzPath, createUsdzPlane({ fileName, imageBuffer, aspect }));
+  fs.copyFileSync(sourcePath, versionedImagePath);
+  fs.copyFileSync(glbPath, versionedGlbPath);
+  fs.copyFileSync(usdzPath, versionedUsdzPath);
 }
 
 function getImageMetadata(fileName, buffer) {
