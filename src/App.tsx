@@ -6,14 +6,16 @@ type ModelViewerElement = HTMLElement & {
 
 const base = import.meta.env.BASE_URL;
 const viewerId = "visionar-model-viewer";
-const assetVersion = "v20260629i";
+const posterVersion = "v20260629i";
+const androidModelVersion = "v20260629i";
+const iosModelVersion = "v20260629j";
 
 const image1 = {
   label: "Imagen 1",
   description: "Demo AR funcional para el cliente.",
-  image: `${base}RepositorioImagenes/Img_1.${assetVersion}.jpg`,
-  model: `${base}modelos/Img_1.${assetVersion}.glb`,
-  iosModel: `${base}modelos/Img_1.${assetVersion}.usdz`,
+  image: `${base}RepositorioImagenes/Img_1.${posterVersion}.jpg`,
+  model: `${base}modelos/Img_1.${androidModelVersion}.glb`,
+  iosModel: `${base}modelos/Img_1.${iosModelVersion}.usdz`,
   url: new URL(`${base}Vicaria/img1/`, window.location.origin).toString(),
 };
 
@@ -149,6 +151,9 @@ export default function App() {
         <p className="note">
           URL directa del demo:
           <span className="route-inline">{image1.url}</span>
+        </p>
+        <p className="note">
+          Android usa GLB. iPhone usa USDZ: <span className="route-inline">{image1.iosModel}</span>
         </p>
       </section>
     </main>
